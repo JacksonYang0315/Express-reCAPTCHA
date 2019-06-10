@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google reCAPTCHA Demo</title>
+</head>
+
+<body>
+    <h1>Google reCAPTCHA Demo</h1>
+
+    <!-- <form action="" method="post">
+                First name: <input type="text" name="fname" />
+                Last name: <input type="text" name="lname" />
+                <input type="submit" value="Submit" />
+        </form> -->
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lc_b6cUAAAAAK6TBgMjCXaUE6x1MeTJzQJNrjh_"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Lc_b6cUAAAAAK6TBgMjCXaUE6x1MeTJzQJNrjh_', { action: 'login' }).then(function (token) {
+                axios.post('/login', {
+                    token: token
+                })
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            })
+        })
+    </script>
+</body>
+
+</html>
